@@ -16,6 +16,10 @@ bedtools intersect -a GenCodeVM25.gene.tssup2.5kbDn1kb.padded.bed -b ../mm10.bou
 
 
 ######################genebody +- 100 kb#########
+cat genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }(S2 >100000){ print $1, ($2 - 100000), ($3 + 100000), $4, $5, $6  }' > genCode.vM25.gene.geneBodyUPDn100kb.padded.bed
+bedops --element-of 100%  genCode.vM25.gene.geneBodyUPDn100kb.padded.bed ../mm10.bound.bed > GenCodeVM25.gene.geneBodyUPDn100kb.padded.filtered.bed
+
+
 
 
 
