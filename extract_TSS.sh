@@ -8,20 +8,16 @@ scp -r GenCode.vM25.mm10.Gene_bed pliu@10.14.18.147:/workspace/rsrch2/common_dat
 cd /workspace/rsrch2/common_data/Refgenome/mm10/GenCode.vM25.mm10.Gene_bed/
 
 ####awk forward and revers #######
- awk '($6 == "+") { print $0 }' genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }($2 > 2500){ print $1, ($2 - 2500), ($2 + 1000), $4, $5, $6  }' > genCode.vM25.gene.tssUp2.5kbDn1kb.for.padded.bed
- awk '($6 == "-") { print $0 }' genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }($3 > 1000){ print $1, ($3 - 1000), ($3 + 2500), $4, $5, $6  }' > genCode.vM25.gene.tssUp2.5kbDn1kb.tss.rev.padded.bed
+awk '($6 == "+") { print $0 }' genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }{ print $1, ($2 - 2500), ($2 + 1000), $4, $5, $6  }' > genCode.vM25.gene.tssUp2.5kbDn1kb.for.padded.bed
+awk '($6 == "-") { print $0 }' genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }{ print $1, ($3 - 1000), ($3 + 2500), $4, $5, $6  }' > genCode.vM25.gene.tssUp2.5kbDn1kb.tss.rev.padded.bed
 
 bedops --everything genCode.vM25.gene.tssUp2.5kbDn1kb.for.padded.bed genCode.vM25.gene.tssUp2.5kbDn1kb.tss.rev.padded.bed > GenCodeVM25.gene.tssup2.5kbDn1kb.padded.bed
 bedtools intersect -a GenCodeVM25.gene.tssup2.5kbDn1kb.padded.bed -b ../mm10.bound.bed > GenCodeVM25.gene.tssup2.5kbDn1kb.padded.filtered.bed
 
 
 ######################genebody +- 100 kb#########
-cat genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }(S2 >100000){ print $1, ($2 - 100000), ($3 + 100000), $4, $5, $6  }' > genCode.vM25.gene.geneBodyUPDn100kb.padded.bed
-bedops --element-of 100%  genCode.vM25.gene.geneBodyUPDn100kb.padded.bed ../mm10.bound.bed > GenCodeVM25.gene.geneBodyUPDn100kb.padded.filtered.bed
-
-
-
-
+ cat genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }{ print $1, ($2 - 100000), ($3 + 100000), $4, $5, $6  }' |sed 's/-[0-9]\+/0/' >genCode.vM25.gene.geneBodyUPDn100kb.padded.bed
+ bedtools intersect -a genCode.vM25.gene.geneBodyUPDn100kb.padded.bed -b ../mm10.bound.bed > GenCodeVM25.gene.geneBodyUPDn100kb.padded.filtered.bed
 
 
  
