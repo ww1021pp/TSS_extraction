@@ -20,5 +20,26 @@ bedtools intersect -a GenCodeVM25.gene.tssup2.5kbDn1kb.padded.bed -b ../mm10.bou
  bedtools intersect -a genCode.vM25.gene.geneBodyUPDn100kb.padded.bed -b ../mm10.bound.bed > GenCodeVM25.gene.geneBodyUPDn100kb.padded.filtered.bed
 
 
- 
+ ##########TSS 5kb, 10kb, 20kb###
 
+ awk '($6 == "+") { print $0 }' genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }{ print $1, ($2 - 5000), ($2 + 5000), $4, $5, $6  }' > genCode.vM25.gene.tss5K.for.padded.bed
+ awk '($6 == "-") { print $0 }' genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }{ print $1, ($3 - 5000), ($3 + 5000), $4, $5, $6  }' > genCode.vM25.gene.tss5K.rev.padded.bed
+ bedops --everything genCode.vM25.gene.tss5K.for.padded.bed genCode.vM25.gene.tss5K.rev.padded.bed > GenCodeVM25.gene.tss5K.padded.bed
+ bedtools intersect -a GenCodeVM25.gene.tss5K.padded.bed -b ../mm10.bound.bed > GenCodeVM25.gene.tss5K.filtered.bed
+
+ awk '($6 == "+") { print $0 }' genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }{ print $1, ($2 - 2000), ($2 + 2000), $4, $5, $6  }' > genCode.vM25.gene.tss2K.for.padded.bed
+ awk '($6 == "-") { print $0 }' genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }{ print $1, ($3 - 2000), ($3 + 2000), $4, $5, $6  }' > genCode.vM25.gene.tss2K.rev.padded.bed
+ bedops --everything genCode.vM25.gene.tss2K.for.padded.bed genCode.vM25.gene.tss5K.rev.padded.bed > GenCodeVM25.gene.tss2K.padded.bed
+ bedtools intersect -a GenCodeVM25.gene.tss2K.padded.bed -b ../mm10.bound.bed > GenCodeVM25.gene.tss2K.filtered.bed
+
+
+ awk '($6 == "+") { print $0 }' genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }{ print $1, ($2 - 10000), ($2 + 10000), $4, $5, $6  }' > genCode.vM25.gene.tss10K.for.padded.bed
+ awk '($6 == "-") { print $0 }' genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }{ print $1, ($3 - 10000), ($3 + 10000), $4, $5, $6  }' > genCode.vM25.gene.tss10K.rev.padded.bed
+ bedops --everything genCode.vM25.gene.tss10K.for.padded.bed genCode.vM25.gene.tss10K.rev.padded.bed > GenCodeVM25.gene.tss10K.padded.bed
+ bedtools intersect -a GenCodeVM25.gene.tss10K.padded.bed -b ../mm10.bound.bed > GenCodeVM25.gene.tss10K.filtered.bed
+
+
+ awk '($6 == "+") { print $0 }' genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }{ print $1, ($2 - 20000), ($2 + 20000), $4, $5, $6  }' > genCode.vM25.gene.tss20K.for.padded.bed
+ awk '($6 == "-") { print $0 }' genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }{ print $1, ($3 - 20000), ($3 + 20000), $4, $5, $6  }' > genCode.vM25.gene.tss20K.rev.padded.bed
+ bedops --everything genCode.vM25.gene.tss20K.for.padded.bed genCode.vM25.gene.tss20K.rev.padded.bed > GenCodeVM25.gene.tss20K.padded.bed
+ bedtools intersect -a GenCodeVM25.gene.tss20K.padded.bed -b ../mm10.bound.bed > GenCodeVM25.gene.tss20K.filtered.bed
