@@ -19,6 +19,11 @@ bedtools intersect -a GenCodeVM25.gene.tssup2.5kbDn1kb.padded.bed -b ../mm10.bou
  cat genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }{ print $1, ($2 - 100000), ($3 + 100000), $4, $5, $6  }' |sed 's/-[0-9]\+/0/' >genCode.vM25.gene.geneBodyUPDn100kb.padded.bed
  bedtools intersect -a genCode.vM25.gene.geneBodyUPDn100kb.padded.bed -b ../mm10.bound.bed > GenCodeVM25.gene.geneBodyUPDn100kb.padded.filtered.bed
 
+ cat genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }{ print $1, ($2 - 2000), ($3 + 2000), $4, $5, $6  }' |sed 's/-[0-9]\+/0/' >genCode.vM25.gene.geneBodyUPDn2kb.padded.bed
+ bedtools intersect -a genCode.vM25.gene.geneBodyUPDn2kb.padded.bed -b ../mm10.bound.bed > GenCodeVM25.gene.geneBodyUPDn2kb.padded.filtered.bed
+
+
+
 
  ##########TSS 5kb, 10kb, 20kb###
 
