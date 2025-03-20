@@ -12,15 +12,15 @@ awk '($6 == "+") { print $0 }' genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\
 awk '($6 == "-") { print $0 }' genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }{ print $1, ($3 - 1000), ($3 + 2500), $4, $5, $6  }' > genCode.vM25.gene.tssUp2.5kbDn1kb.tss.rev.padded.bed
 
 bedops --everything genCode.vM25.gene.tssUp2.5kbDn1kb.for.padded.bed genCode.vM25.gene.tssUp2.5kbDn1kb.tss.rev.padded.bed > GenCodeVM25.gene.tssup2.5kbDn1kb.padded.bed
-bedops --element-of 100% GenCodeVM25.gene.tssup2.5kbDn1kb.padded.bed ../mm10.bound.bed.sorted > GenCodeVM25.gene.tssup2.5kbDn1kb.padded.filtered.bed
+bedops --element-of 100% GenCodeVM25.gene.tssup2.5kbDn1kb.padded.bed ../mm10.bound.bed.sort > GenCodeVM25.gene.tssup2.5kbDn1kb.padded.filtered.bed
 
 
 ######################genebody +- 100 kb#########
  cat genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }{ print $1, ($2 - 100000), ($3 + 100000), $4, $5, $6  }' |sed 's/-[0-9]\+/0/' >genCode.vM25.gene.geneBodyUPDn100kb.padded.bed
- bedops --element-of 100% genCode.vM25.gene.geneBodyUPDn100kb.padded.bed ../mm10.bound.bed > GenCodeVM25.gene.geneBodyUPDn100kb.padded.filtered.bed
+ bedops --element-of 100% genCode.vM25.gene.geneBodyUPDn100kb.padded.bed ../mm10.bound.bed.sort > GenCodeVM25.gene.geneBodyUPDn100kb.padded.filtered.bed
 
  cat genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }{ print $1, ($2 - 2000), ($3 + 2000), $4, $5, $6  }' |sed 's/-[0-9]\+/0/' >genCode.vM25.gene.geneBodyUPDn2kb.padded.bed
- bedops --element-of 100% genCode.vM25.gene.geneBodyUPDn2kb.padded.bed ../mm10.bound.bed > GenCodeVM25.gene.geneBodyUPDn2kb.padded.filtered.bed
+ bedops --element-of 100% genCode.vM25.gene.geneBodyUPDn2kb.padded.bed ../mm10.bound.bed.sort > GenCodeVM25.gene.geneBodyUPDn2kb.padded.filtered.bed
 
 
 
@@ -37,26 +37,26 @@ bedops --element-of 100% GenCodeVM25.gene.tssup2.5kbDn1kb.padded.bed ../mm10.bou
  awk '($6 == "+") { print $0 }' genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }{ print $1, ($2 - 1000), ($2 + 1000), $4, $5, $6  }' > genCode.vM25.gene.tss1K.for.padded.bed
  awk '($6 == "-") { print $0 }' genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }{ print $1, ($3 - 1000), ($3 + 1000), $4, $5, $6  }' > genCode.vM25.gene.tss1K.rev.padded.bed
  bedops --everything genCode.vM25.gene.tss1K.for.padded.bed genCode.vM25.gene.tss1K.rev.padded.bed > GenCodeVM25.gene.tss1K.padded.bed
- bedops --element-of 100%  GenCodeVM25.gene.tss1K.padded.bed ../mm10.bound.bed > GenCodeVM25.gene.tss1K.filtered.bed
+ bedops --element-of 100% GenCodeVM25.gene.tss1K.padded.bed ../mm10.bound.bed.sort > GenCodeVM25.gene.tss1K.filtered.bed
 
  awk '($6 == "+") { print $0 }' genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }{ print $1, ($2 - 2000), ($2 + 2000), $4, $5, $6  }' > genCode.vM25.gene.tss2K.for.padded.bed
  awk '($6 == "-") { print $0 }' genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }{ print $1, ($3 - 2000), ($3 + 2000), $4, $5, $6  }' > genCode.vM25.gene.tss2K.rev.padded.bed
  bedops --everything genCode.vM25.gene.tss2K.for.padded.bed genCode.vM25.gene.tss2K.rev.padded.bed > GenCodeVM25.gene.tss2K.padded.bed
- bedops --element-of 100%  GenCodeVM25.gene.tss2K.padded.bed ../mm10.bound.bed > GenCodeVM25.gene.tss2K.filtered.bed
+ bedops --element-of 100% GenCodeVM25.gene.tss2K.padded.bed ../mm10.bound.bed.sort > GenCodeVM25.gene.tss2K.filtered.bed
 
 
  awk '($6 == "+") { print $0 }' genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }{ print $1, ($2 - 10000), ($2 + 10000), $4, $5, $6  }' > genCode.vM25.gene.tss10K.for.padded.bed
  awk '($6 == "-") { print $0 }' genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }{ print $1, ($3 - 10000), ($3 + 10000), $4, $5, $6  }' > genCode.vM25.gene.tss10K.rev.padded.bed
  bedops --everything genCode.vM25.gene.tss10K.for.padded.bed genCode.vM25.gene.tss10K.rev.padded.bed > GenCodeVM25.gene.tss10K.padded.bed
- bedops --element-of 100%  GenCodeVM25.gene.tss10K.padded.bed ../mm10.bound.bed > GenCodeVM25.gene.tss10K.filtered.bed
+ bedops --element-of 100%  GenCodeVM25.gene.tss10K.padded.bed ../mm10.bound.bed.sort > GenCodeVM25.gene.tss10K.filtered.bed
 
  awk '($6 == "+") { print $0 }' genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }{ print $1, ($2 - 50000), ($2 + 50000), $4, $5, $6  }' > genCode.vM25.gene.tss50K.for.padded.bed
  awk '($6 == "-") { print $0 }' genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }{ print $1, ($3 - 50000), ($3 + 50000), $4, $5, $6  }' > genCode.vM25.gene.tss50K.rev.padded.bed
  bedops --everything genCode.vM25.gene.tss50K.for.padded.bed genCode.vM25.gene.tss50K.rev.padded.bed > GenCodeVM25.gene.tss50K.padded.bed
- bedops --element-of 100% GenCodeVM25.gene.tss50K.padded.bed ../mm10.bound.bed > GenCodeVM25.gene.tss50K.filtered.bed
+ bedops --element-of 100% GenCodeVM25.gene.tss50K.padded.bed ../mm10.bound.bed.sort > GenCodeVM25.gene.tss50K.filtered.bed
 
  awk '($6 == "+") { print $0 }' genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }{ print $1, ($2 - 100000), ($2 + 100000), $4, $5, $6  }' > genCode.vM25.gene.tss100K.for.padded.bed
  awk '($6 == "-") { print $0 }' genCode.vM25.gene.sorted.bed | awk 'BEGIN{ OFS="\t" }{ print $1, ($3 - 100000), ($3 + 100000), $4, $5, $6  }' > genCode.vM25.gene.tss100K.rev.padded.bed
  bedops --everything genCode.vM25.gene.tss100K.for.padded.bed genCode.vM25.gene.tss100K.rev.padded.bed > GenCodeVM25.gene.tss10K.padded.bed
- bedops --element-of 100% GenCodeVM25.gene.tss10K.padded.bed ../mm10.bound.bed > GenCodeVM25.gene.tss100K.filtered.bed
+ bedops --element-of 100% GenCodeVM25.gene.tss10K.padded.bed ../mm10.bound.bed.sort > GenCodeVM25.gene.tss100K.filtered.bed
  
